@@ -3,15 +3,15 @@
   "issues": [
     {
       "subject": "The URL www.scammerwebsite.com is very long",
-      "textOne": "Be wary of sites that have URLs this long, they're likely phishing sites."
+      "text": "Be wary of sites that have URLs this long, they're likely phishing sites."
     },
     {
       "subject": "It appears that this page is asking for personal information.",
-      "textOne": "Phishing attackers try to trick you to give them your personal information, like your name or your address! When you are submitting any information to any website, ask your parents to check that it's ok."
+      "text": "Phishing attackers try to trick you to give them your personal information, like your name or your address! When you are submitting any information to any website, ask your parents to check that it's ok."
     },
     {
       "subject": "This page looks like it was written by a phisher!",
-      "textOne": "Some phishing sites, like this one, are not written well. If you land on a webpage that contains weird language, go back - you're on a phishing site!"
+      "text": "Some phishing sites, like this one, are not written well. If you land on a webpage that contains weird language, go back - you're on a phishing site!"
     }
   ]
 }
