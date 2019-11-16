@@ -123,6 +123,6 @@ def get_issues(url):
                                'text': "Sometimes, even that doesn't work as the phishing attacker can be very deceptive. That's why you have assistants like me to protect you!"})
         
     data["issues"].append({'subject': "That's it for this website.",
-                               'textOne': "Try to remember what you've learned!"})
+                               'text': "Try to remember what you've learned!"})
     
     return json.dumps(data)
