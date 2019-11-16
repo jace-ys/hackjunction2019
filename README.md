@@ -31,11 +31,9 @@ Phishy comprises of 3 components.
    The service categorise suspicious urls against checklist of conditions:
 
    - Compare the URL against a list of known “good/popular” sites
-   - Check if the URL is an internationalized domain name (WHY : https://en.wikipedia.org/wiki/IDN_homograph_attack)
-   - Check if the URL has many or too long subdomains
-     (WHY : https://securityblog.switch.ch/2017/11/14/subdomain-hijacking/)
-   - [KIV] Determine whether the site redirects through a suspicious top-level domain
-     (WHY : https://www.symantec.com/blogs/feature-stories/top-20-shady-top-level-domains)
+   - Check if the URL is an internationalized domain name (https://en.wikipedia.org/wiki/IDN_homograph_attack)
+   - Check if the URL has many or too long subdomains (https://securityblog.switch.ch/2017/11/14/subdomain-hijacking/)
+   - [KIV] Determine whether the site redirects through a suspicious top-level domain (https://www.symantec.com/blogs/feature-stories/top-20-shady-top-level-domains)
 
 3. Content Analysing Backend
 
