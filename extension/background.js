@@ -2,17 +2,18 @@ chrome.runtime.onInstalled.addListener(() => {
   console.log("Extension installed");
 });
 
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   if (changeInfo.status === "complete") {
-    const pageIsPhishing = isPhishing(tab.url);
-    if (pageIsPhishing) console.log("Phishing site");
-    messageContent({ phishing: isPhishing(tab.url) });
+    fetch("https://swapi.co/api/people/1/")
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        if (true) {
+          messageContent({ isPhishing: true, ...data });
+        }
+      });
   }
 });
-
-const isPhishing = url => {
-  return true;
-};
 
 const messageContent = payload => {
   chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
