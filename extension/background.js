@@ -17,6 +17,8 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
 
 const messageContent = payload => {
   chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-    chrome.tabs.sendMessage(tabs[0].id, payload);
+    if (tabs.length > 0) {
+      chrome.tabs.sendMessage(tabs[0].id, payload);
+    }
   });
 };
