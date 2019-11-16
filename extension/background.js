@@ -3,15 +3,16 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  if (changeInfo.status === "complete") {
-    const pageIsPhishing = isPhishing(tab.url);
-    if (pageIsPhishing) console.log("Phishing site");
-    messageContent({ phishing: isPhishing(tab.url) });
+  const pageIsPhishing = isPhishing(tab.url);
+  if (pageIsPhishing) {
+    console.log("Phishing site");
+    chrome.tabs.update(tabId, { url: "https://github.com" });
   }
 });
 
 const isPhishing = url => {
-  return true;
+  console.log(url);
+  return new RegExp(/google\.com/).test(url);
 };
 
 const messageContent = payload => {
@@ -19,3 +20,5 @@ const messageContent = payload => {
     chrome.tabs.sendMessage(tabs[0].id, payload);
   });
 };
+
+chrome.webNavigation;

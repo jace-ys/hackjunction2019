@@ -14,5 +14,5 @@
       "all_frames": true
     }
   ],
-  "permissions": ["tabs"]
+  "permissions": ["tabs", "webNavigation"]
 }
