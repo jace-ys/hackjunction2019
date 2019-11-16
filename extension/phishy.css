@@ -6,3 +6,33 @@
 .image.content img {
   width: 200px;
 }
+
+.speech-bubble {
+  position: relative;
+  background: #efe178;
+  border-radius: 0.4em;
+  width: 560px;
+  left: 50px;
+  text-align: center;
+  color: #000000;
+  font-family: Futura;
+  padding: 40px;
+}
+
+.speech-bubble:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-right-color: #efe178;
+  border-left: 0;
+  margin-top: -20px;
+  margin-left: -20px;
+}
+/*
+.speech-bubble h4 {
+  margin: 20px !important;
+} */
