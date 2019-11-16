@@ -1,19 +1,27 @@
 chrome.runtime.onMessage.addListener((message, sender) => {
   if (!sender.tab) {
     console.log(message);
-    replaceAllLinks();
-    replaceWord(/the/g, "no");
+    // Code for modify link click
+    // removeAllLinks();
+    // let script = "'alert(123);'"
+    // replaceWord(/<a /g, "<a onClick=" + script);
+    // replaceWord(/<a>/g, "<a onClick=" + script + ">");
+    
+    // Code for make all link to pop up window
+    removeAllLinks();
+    let popupURL = "http://google.com"
+    let script = "'window.open(\"" + popupURL + "\",\"name\",\"height=200,width=150\");'"
+    replaceWord(/<a /g, "<a onClick=" + script);
+    replaceWord(/<a>/g, "<a onClick=" + script + ">");
   }
 });
 
-const replaceAllLinks = () => {
+const removeAllLinks = () => {
   let links = document.getElementsByTagName("a");
   for (let link of links) {
-    link.onclick = function() {
-      alert("Hello");
-      return false;
-    };
+    link.removeAttribute('href')
   }
+  console.log("All removed")
 };
 
 const replaceWord = (word, newWord) => {
