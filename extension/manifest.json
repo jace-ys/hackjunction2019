@@ -10,8 +10,10 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["phishy.js"]
+      "js": ["phishy.js"],
+      "css": ["phishy.css"]
     }
   ],
+  "web_accessible_resources": ["assets/*", "script.js"],
   "permissions": ["tabs"]
 }
