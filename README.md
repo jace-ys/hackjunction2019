@@ -30,8 +30,10 @@ Phishy comprises of 3 components.
    The fake URL trick is an infamous for making a fake website look even more realistic. Scammers may give it a website address that looks very similar to the official URL. For example, paypal.com disguised as paypal-online.com looks just about right for many who do not check carefully.
    Thereforce, we have categorised suspicious urls by devising a checklist of conditions which
    - Compares the URL entered into the address against a list of known “good” sites
-   - Checks if URL entered is an internationalized domain name (WHY : https://en.wikipedia.org/wiki/IDN_homograph_attack)
-   - Checks if the URL entered has too long or many subdomains (WHY : https://securityblog.switch.ch/2017/11/14/subdomain-hijacking/)
+   - Checks if URL entered is an internationalized domain name 
+   (WHY : https://en.wikipedia.org/wiki/IDN_homograph_attack)
+   - Checks if the URL entered has too long or many subdomains 
+   (WHY : https://securityblog.switch.ch/2017/11/14/subdomain-hijacking/)
    - [KIV] Determines whether the site redirects through a suspicious top-level domain (TLD)
 
 3) Content Analysing Backend
