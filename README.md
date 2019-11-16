@@ -39,4 +39,5 @@ Phishy comprises of 3 components.
 
 # Future improvements
 
-For Phishy to be effective, it should be installed onto kids' devices and can only be disabled by their parents.
+- Reduce latency for network round-trip or build some ML capabilities into extension
+- For Phishy to be effective, it should be installed onto kids' devices and can only be disabled by their parents.
