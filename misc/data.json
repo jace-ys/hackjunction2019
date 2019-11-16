@@ -1,1 +1,17 @@
-{"isPhishing": true, "issues": [{"subject": "This URL is very long.", "textOne": "Be wary of sites that have URLs this long, they're likely phishing sites.", "textTwo": "Remember, checking the URL is one of the easiest ways to recognize a phishing site!"}, {"subject": "It appears that this page is asking for personal information.", "textOne": "Phishing attackers try to trick you to give them your personal information, like your name or your address! When you are submitting any information to any website, ask your parents to check that it's ok."}, {"subject": "This page looks like it was written by a phisher!", "textOne": "Some phishing sites, like this one, are not written well. If you land on a webpage that contains weird language, go back - you're on a phishing site!", "textTwo": "Sometimes you might enter pages that are written in a foreign language. You're better off moving away from those as well - you can't know what's on the page."}]}
+{
+  "isPhishing": true,
+  "issues": [
+    {
+      "subject": "The URL www.scammerwebsite.com is very long",
+      "text": "Be wary of sites that have URLs this long, they're likely phishing sites."
+    },
+    {
+      "subject": "It appears that this page is asking for personal information.",
+      "text": "Phishing attackers try to trick you to give them your personal information, like your name or your address! When you are submitting any information to any website, ask your parents to check that it's ok."
+    },
+    {
+      "subject": "This page looks like it was written by a phisher!",
+      "text": "Some phishing sites, like this one, are not written well. If you land on a webpage that contains weird language, go back - you're on a phishing site!"
+    }
+  ]
+}

@@ -44,7 +44,7 @@ const modal = (index, issue) => {
     <img class="image" src=${chrome.runtime.getURL("assets/mascot.png")}>
     <div class="speech-bubble">
       <h4>${issue.subject}</h4>
-      <p>${issue.textOne}</p>
+      <p>${issue.text}</p>
       <small>- Phishy</small>
     </div>
   </div>
@@ -63,16 +63,15 @@ const data = {
   issues: [
     {
       subject: `The <span class="ui tooltip" data-tooltip="Address of website">URL</span> www.go00gle.com indicates a dodgy website`,
-      textOne: "Most websites.."
+      text: "Most websites.."
     },
     {
       subject: "The page asks for your address",
-      textOne: "Most websites..",
-      textTwo: "dadadad"
+      text: "Most websites.."
     },
     {
       subject: "The page uses dodge language",
-      textOne: "Most websites.."
+      text: "Most websites.."
     }
   ]
 };
