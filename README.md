@@ -1,5 +1,9 @@
 # Phishy the Fish
 
+<p align="center">
+  <img width="300" alt="Phishy" src="https://github.com/jace-ys/hackjunction2019/blob/master/extension/assets/mascot.png">
+</p>
+
 ## Problem
 
 With smartphones and other digitally connected devices becoming ubiquitous amongst kids, there is a more pressing need than ever before to educate kids on how to protect themselves in the digital world - the curious and gullible nature of kids make them easy targets for falling prey to malicious cyber attacks such as phishing, cyber bullying and malware infection.
@@ -10,7 +14,7 @@ We have developed Phishy the Fish in a bid to tackle the problem of phishing web
 
 ### Software Architecture
 
-### Implementation\*
+### Implementation
 
 Phishy comprises of 3 components.
 
