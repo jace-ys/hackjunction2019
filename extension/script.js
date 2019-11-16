@@ -1,13 +1,11 @@
 let counter = 0;
 const modalCount = document.querySelectorAll(".ui.basic.modal").length;
 
-const show = () => {
-  $(`#modal-${counter}`).modal("show");
-  counter++;
-  if (counter > modalCount) window.history.back();
-};
-
 document.onclick = event => {
   event.preventDefault();
-  show();
+  $(`#modal-${counter}`)
+    .modal({ duration: 1500, transition: "fade" })
+    .modal("show");
+  counter++;
+  if (counter > modalCount) window.history.back();
 };
