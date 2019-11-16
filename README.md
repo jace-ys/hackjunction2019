@@ -30,7 +30,7 @@ Phishy comprises of 3 components.
    This service exposed via a Flask HTTP server takes a URL payload, and analyses the URL to determine if it's a potential phishing website before returning a boolean response value to the Chrome extension.
    The service categorise suspicious urls against checklist of conditions:
 
-   - Compare the URL against a list of known “good” sites
+   - Compare the URL against a list of known “good/popular” sites
    - Check if the URL is an internationalized domain name
      (WHY : https://en.wikipedia.org/wiki/IDN_homograph_attack)
    - Check if the URL has many or too long subdomains
