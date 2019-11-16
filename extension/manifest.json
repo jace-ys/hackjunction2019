@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "name": "Phishy",
+  "version": "1.0",
+  "description": "Phishy extension",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["phishy.js"]
+    }
+  ],
+  "permissions": ["tabs"]
+}
