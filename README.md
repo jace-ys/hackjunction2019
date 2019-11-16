@@ -14,6 +14,10 @@ We have developed Phishy the Fish in a bid to tackle the problem of phishing web
 
 ### Software Architecture
 
+<p align="center">
+  <img width="600" alt="Architecture" src="https://github.com/jace-ys/hackjunction2019/blob/master/extension/assets/architecture.png">
+</p>
+
 ### Implementation
 
 Phishy comprises of 3 components.
