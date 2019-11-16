@@ -1,43 +1,27 @@
 from __future__ import unicode_literals, print_function
 from grammarbot import GrammarBotClient
 from spacy.lang.en import English
-from enum import Enum
-import spam
-
-client = GrammarBotClient()
-
-url = 'https://www.grammarbot.io/'
-text = spam.scrape_text(url)
-# print(text)
-# res = client.check(text)
-
-# print(res)
-
-class PhishCategory(Enum):
-    claim_prize = 1 # Tells user they've won a prize
-    request_auth = 2 # Tricks user into entering log in credentials
-    payment_auth = 3 # Tricks user into entering payment info
-
-class PhishCategorizer:
-    # Categorizes a set of text into different phish categories
-    # Searches text for keywords and matches to most likely PhishCategory
-
-    def __init__(self, text):
-        self.text = text
-        self.category = None
+# import spam
+import math
 
 
-class GrammarCheck:
+class GrammarChecker:
 
-    def __init__(self, text, max_char_count = 15):
+    def __init__(self, text, max_char_count = 17, sensitivity = 1):
         # Initialize checker with text and preprocess text by removing unwanted sentences
+        # Sensitivity (0, 1): how strict you are with typos
+        # Sensitivity of 1 is strictest, 0 is most lenient
+
         self.text = text
         self.max_char_count = max_char_count
+        self.sensitivity = sensitivity
         self.client = GrammarBotClient()
         self.sentences = self.get_sentences()
+        self.num_words = 0
         self.preprocess_text()
 
     def get_sentences(self):
+        # Returns sentences from text
         nlp = English()
         nlp.add_pipe(nlp.create_pipe('sentencizer')) # updated
         doc = nlp(self.text)
@@ -46,18 +30,37 @@ class GrammarCheck:
 
     def preprocess_text(self):
         # Remove sentences with words greater than max_char_count
+        count = 0
         for sent in self.sentences:
             for word in sent.split():
                 if len(word) > self.max_char_count:
-                    self.sentences.remove(sent)
+                    if sent in self.sentences:
+                        self.sentences.remove(sent)
+                count += 1
+        self.num_words = count
         self.text = ' '.join(sent for sent in self.sentences)
 
-    def check_grammar(self):
+    def measure_grammar(self, sensitivity = 1, ignore_doublespace = True, ignore_punctuation = True):
+        # Return a measure of typo appearance in text
         res = self.client.check(self.text)
-        print(res)
-
-if __name__ == '__main__':
-    grammar_checker = GrammarCheck('hellomynameisjoshuaramkissoon. My nickname is josh. I have appreciated verymuchyour help. Pleasestopmessagingmeplease.')
-    grammar_checker.check_grammar()
-    grammar_checker.category = PhishCategory.request_auth
-    print(grammar_checker.category)
+        matches = res.matches
+        results = []
+        num_typos = 0
+        if ignore_doublespace and ignore_punctuation:
+            for match in matches:
+                if match.category != 'TYPOGRAPHY' and match.category != 'PUNCTUATION':
+                    results.append(match)
+            num_typos = len(results)
+        elif ignore_doublespace:
+            for match in matches:
+                if match.category != 'TYPOGRAPHY':
+                    results.append(match)
+            num_typos = len(results)
+        elif ignore_punctuation:
+            for match in matches:
+                if match.category != 'PUNCTUATION':
+                    results.append(match)
+            num_typos = len(results)
+        num_sentences = len(self.sentences)
+        measure = num_typos**1.5*math.exp(num_typos-(0.25*(num_sentences)))*sensitivity/self.num_words
+        return measure
