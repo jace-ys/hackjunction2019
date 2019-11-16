@@ -45,6 +45,7 @@ const modal = (index, issue) => {
     <div class="speech-bubble">
       <h4>${issue.subject}</h4>
       <p>${issue.textOne}</p>
+      <small>- Phishy</small>
     </div>
   </div>
   <div class="actions">
@@ -61,7 +62,7 @@ const data = {
   isPhishing: true,
   issues: [
     {
-      subject: "The URL www.go00gle.com indicates a dodgy website",
+      subject: `The <span class="ui tooltip" data-tooltip="Address of website">URL</span> www.go00gle.com indicates a dodgy website`,
       textOne: "Most websites.."
     },
     {
