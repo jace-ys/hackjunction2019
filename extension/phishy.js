@@ -3,7 +3,10 @@ chrome.runtime.onMessage.addListener((message, sender) => {
     console.log(message);
     injectStyles();
     injectScripts();
-    injectModal();
+    injectModal({
+      subject: "Hello, my name is Phishy!",
+      body: "You just stumbled upon a phishing website."
+    });
 
     overrideClicks();
   }
@@ -14,15 +17,15 @@ const overrideClicks = () => {
   for (let link of links) {
     link.setAttribute("href", "javascript: show();");
   }
-
   let buttons = document.querySelectorAll("button");
   for (let button of buttons) {
     button.setAttribute("onclick", "javascript: show();");
+    button.onclick = () => false;
   }
-
   let inputs = document.querySelectorAll("input[type='submit']");
   for (let input of inputs) {
     input.setAttribute("onclick", "javascript: show();");
+    input.onclick = event => event.preventDefault();
   }
 };
 
@@ -47,17 +50,21 @@ const injectScripts = () => {
   document.body.appendChild(semantic);
 };
 
-const injectModal = () => {
+const injectModal = content => {
   let div = document.createElement("div");
-  div.insertAdjacentHTML("afterbegin", modal());
+  div.insertAdjacentHTML("afterbegin", modal(content));
   document.body.appendChild(div);
 };
 
-const modal = text => {
+const modal = ({ subject: subject, body: body }) => {
   return `
 <div class="ui basic modal">
   <div class="image content">
     <img class="image" src=${chrome.runtime.getURL("assets/mascot.png")}>
+    <div class="speech-bubble">
+      <h4>${subject}</h4>
+      <p>${body}</p>
+    </div>
   </div>
   <div class="actions">
     <div class="ui green ok inverted button">
@@ -67,4 +74,22 @@ const modal = text => {
   </div>
 </div>
 `;
+};
+
+const data = {
+  issues: [
+    {
+      subject: "The URL www.go00gle.com indicates a dodgy website",
+      bodyOne: "Most websites.."
+    },
+    {
+      subject: "The page asks for your address",
+      body: "Most websites..",
+      bodyTwo: "dadadad"
+    },
+    {
+      subject: "The page uses dodge language",
+      body: "Most websites.."
+    }
+  ]
 };
