@@ -14,24 +14,27 @@ We have developed Phishy the Fish in a bid to tackle the problem of phishing web
 
 ### Software Architecture
 
+<p align="center">
+  <img width="800" alt="Architecture" src="https://github.com/jace-ys/hackjunction2019/blob/master/extension/assets/architecture.jpg">
+</p>
+
 ### Implementation
 
 Phishy comprises of 3 components.
 
 1. Chrome extension:
    This was developed in JavaScript, HTML and CSS and functions as the "user interface" that kids interact with; it presents itself as our kid-friendly mascot, Phishy the Fish. Whenever a kid visits a website, the extension sends a request to our backend which returns a response of whether the site is a potential phishing website as well as information about any dubious content on the page.
-   If the site is suspected to be phishing, Phishy blocks any interactions kids make with the website - clicks are overridden and do not do what they were intended to. Instead, clicks cause Phishy to popup on the screen and highlight the dubious content, explaining what's dubious about them and how they can be identified. Phishy also goes on to warn kids about the consequences of being phished, such as leaking their bank details, addresses and phone numbers, or installing malicious software. After that, Phishy redirects kids back to the previous site. To make Phishy more kid-friendly, we also provide tooltips for internet terminologies that they might not understand.
+   If the site is suspected to be phishing, Phishy blocks any interactions kids make with the website by overwriting the page's HTML DOM - clicks are overridden and do not do what they were intended to. Instead, clicks cause Phishy to popup on the screen and highlight the dubious content, explaining what's dubious about them and how they can be identified. Phishy also goes on to warn kids about the consequences of being phished, such as leaking their bank details, addresses and phone numbers, or installing malicious software. After that, Phishy redirects kids back to the previous site. To make Phishy more kid-friendly, we also provide tooltips for internet terminologies that they might not understand.
 
 2. URL Analysing Backend:
-    The fake URL trick is an infamous for making a fake website look even more realistic. Scammers may give it a website address that looks very similar to the official URL. For example, paypal.com disguised as paypal-online.com looks just about right for many who do not check carefully. 
-    Thereforce, we have categorised suspicious urls by devising a checklist of conditions which
-    - Compares the URL entered into the address against a list of known “good” sites
-    - Checks if URL entered is an internationalized domain name
-    - Checks if the URL entered has too long or many subdomains
-    - [KIV] Determines whether the site redirects through a suspicious top-level domain (TLD)
-    
+   The fake URL trick is an infamous for making a fake website look even more realistic. Scammers may give it a website address that looks very similar to the official URL. For example, paypal.com disguised as paypal-online.com looks just about right for many who do not check carefully.
+   Thereforce, we have categorised suspicious urls by devising a checklist of conditions which
+   - Compares the URL entered into the address against a list of known “good” sites
+   - Checks if URL entered is an internationalized domain name
+   - Checks if the URL entered has too long or many subdomains
+   - [KIV] Determines whether the site redirects through a suspicious top-level domain (TLD)
 
-3. Content Analysing Backend
+3) Content Analysing Backend
 
 # Future improvements
 
