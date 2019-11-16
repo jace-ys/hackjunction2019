@@ -3,31 +3,12 @@ chrome.runtime.onMessage.addListener((message, sender) => {
     console.log(message);
     injectStyles();
     injectScripts();
-    injectModal({
-      subject: "Hello, my name is Phishy!",
-      body: "You just stumbled upon a phishing website."
-    });
 
-    overrideClicks();
+    data.issues.forEach((issue, index) => {
+      injectModal(index, issue);
+    });
   }
 });
-
-const overrideClicks = () => {
-  let links = document.querySelectorAll("a");
-  for (let link of links) {
-    link.setAttribute("href", "javascript: show();");
-  }
-  let buttons = document.querySelectorAll("button");
-  for (let button of buttons) {
-    button.setAttribute("onclick", "javascript: show();");
-    button.onclick = () => false;
-  }
-  let inputs = document.querySelectorAll("input[type='submit']");
-  for (let input of inputs) {
-    input.setAttribute("onclick", "javascript: show();");
-    input.onclick = event => event.preventDefault();
-  }
-};
 
 const injectStyles = () => {
   let semanticStyle = document.createElement("link");
@@ -50,20 +31,20 @@ const injectScripts = () => {
   document.body.appendChild(semantic);
 };
 
-const injectModal = content => {
+const injectModal = (index, issue) => {
   let div = document.createElement("div");
-  div.insertAdjacentHTML("afterbegin", modal(content));
+  div.insertAdjacentHTML("afterbegin", modal(index, issue));
   document.body.appendChild(div);
 };
 
-const modal = ({ subject: subject, body: body }) => {
+const modal = (index, issue) => {
   return `
-<div class="ui basic modal">
+<div class="ui basic modal" id="modal-${index}">
   <div class="image content">
     <img class="image" src=${chrome.runtime.getURL("assets/mascot.png")}>
     <div class="speech-bubble">
-      <h4>${subject}</h4>
-      <p>${body}</p>
+      <h4>${issue.subject}</h4>
+      <p>${issue.textOne}</p>
     </div>
   </div>
   <div class="actions">
@@ -77,19 +58,20 @@ const modal = ({ subject: subject, body: body }) => {
 };
 
 const data = {
+  isPhishing: true,
   issues: [
     {
       subject: "The URL www.go00gle.com indicates a dodgy website",
-      bodyOne: "Most websites.."
+      textOne: "Most websites.."
     },
     {
       subject: "The page asks for your address",
-      body: "Most websites..",
-      bodyTwo: "dadadad"
+      textOne: "Most websites..",
+      textTwo: "dadadad"
     },
     {
       subject: "The page uses dodge language",
-      body: "Most websites.."
+      textOne: "Most websites.."
     }
   ]
 };

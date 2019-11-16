@@ -3,6 +3,14 @@
   "name": "Phishy",
   "version": "1.0",
   "description": "Phishy extension",
+  "icons": {
+    "16": "assets/mascot.png",
+    "48": "assets/mascot.png",
+    "128": "assets/mascot.png"
+  },
+  "browser_action": {
+    "default_icon": "assets/mascot.png"
+  },
   "background": {
     "scripts": ["background.js"],
     "persistent": false
