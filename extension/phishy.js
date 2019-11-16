@@ -3,28 +3,12 @@ chrome.runtime.onMessage.addListener((message, sender) => {
     console.log(message);
     injectStyles();
     injectScripts();
-    injectModal();
 
-    overrideClicks();
+    data.issues.forEach((issue, index) => {
+      injectModal(index, issue);
+    });
   }
 });
-
-const overrideClicks = () => {
-  let links = document.querySelectorAll("a");
-  for (let link of links) {
-    link.setAttribute("href", "javascript: show();");
-  }
-
-  let buttons = document.querySelectorAll("button");
-  for (let button of buttons) {
-    button.setAttribute("onclick", "javascript: show();");
-  }
-
-  let inputs = document.querySelectorAll("input[type='submit']");
-  for (let input of inputs) {
-    input.setAttribute("onclick", "javascript: show();");
-  }
-};
 
 const injectStyles = () => {
   let semanticStyle = document.createElement("link");
@@ -47,17 +31,22 @@ const injectScripts = () => {
   document.body.appendChild(semantic);
 };
 
-const injectModal = () => {
+const injectModal = (index, issue) => {
   let div = document.createElement("div");
-  div.insertAdjacentHTML("afterbegin", modal());
+  div.insertAdjacentHTML("afterbegin", modal(index, issue));
   document.body.appendChild(div);
 };
 
-const modal = text => {
+const modal = (index, issue) => {
   return `
-<div class="ui basic modal">
+<div class="ui basic modal" id="modal-${index}">
   <div class="image content">
     <img class="image" src=${chrome.runtime.getURL("assets/mascot.png")}>
+    <div class="speech-bubble">
+      <h4>${issue.subject}</h4>
+      <p>${issue.textOne}</p>
+      <small>- Phishy</small>
+    </div>
   </div>
   <div class="actions">
     <div class="ui green ok inverted button">
@@ -67,4 +56,23 @@ const modal = text => {
   </div>
 </div>
 `;
+};
+
+const data = {
+  isPhishing: true,
+  issues: [
+    {
+      subject: `The <span class="ui tooltip" data-tooltip="Address of website">URL</span> www.go00gle.com indicates a dodgy website`,
+      textOne: "Most websites.."
+    },
+    {
+      subject: "The page asks for your address",
+      textOne: "Most websites..",
+      textTwo: "dadadad"
+    },
+    {
+      subject: "The page uses dodge language",
+      textOne: "Most websites.."
+    }
+  ]
 };

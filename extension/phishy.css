@@ -6,3 +6,42 @@
 .image.content img {
   width: 200px;
 }
+
+.speech-bubble {
+  position: relative;
+  background: #efe178;
+  border-radius: 0.4em;
+  width: 615px;
+  left: 50px;
+  text-align: center;
+  color: #000000;
+  font-family: Futura;
+  padding: 40px;
+}
+
+.speech-bubble:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-right-color: #efe178;
+  border-left: 0;
+  margin-top: -20px;
+  margin-left: -20px;
+}
+
+.speech-bubble small {
+  margin-left: 400px;
+}
+
+.ui.basic.modal > .actions {
+  padding-top: 0;
+}
+
+.ui.tooltip {
+  text-decoration: underline;
+  color: #513dff;
+}
