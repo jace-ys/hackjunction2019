@@ -10,12 +10,12 @@ With smartphones and other digitally connected devices becoming ubiquitous among
 
 ## Solution
 
-We have developed Phishy the Fish in a bid to tackle the problem of phishing websites that might lead to unknowing kids leaking personal and private information on the web, or even installing malicious software. Phishy is a browser extension for Chrome targeted at kids, and aims to protect them from any malicious interactions with phishing websites, while educating them about the consequences of visiting such sites, and how they can be easily identified. This will raise their awareness of such malicious web content, thus grooming them into digitally-literate netizens of the future.
+We have developed Phishy the Fish in a bid to tackle the problem of phishing websites that might lead to unknowing kids leaking personal and private information on the web, or even installing malicious software. Phishy is a browser extension for Chrome targeted at kids, and aims not just to protect them from any malicious interactions with phishing websites, but most importantly, educate them about the consequences of visiting such sites, and how they can be easily identified. This will raise their awareness of such malicious web content, thus grooming them into digitally-literate netizens of the future.
 
 ### Software Architecture
 
 <p align="center">
-  <img width="600" alt="Architecture" src="https://github.com/jace-ys/hackjunction2019/blob/master/extension/assets/architecture.png">
+  <img width="800" alt="Architecture" src="https://github.com/jace-ys/hackjunction2019/blob/master/extension/assets/architecture.jpg">
 </p>
 
 ### Implementation
