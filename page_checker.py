@@ -141,6 +141,4 @@ def get_issues(url):
     
     return json.dumps(data)
 
-foo = get_issues("https://www.secure.runescape.com-v.cz")
-print(foo)
 
