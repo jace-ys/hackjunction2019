@@ -34,7 +34,8 @@ Phishy comprises of 3 components.
    (WHY : https://en.wikipedia.org/wiki/IDN_homograph_attack)
    - Checks if the URL entered has too long or many subdomains <br/>
    (WHY : https://securityblog.switch.ch/2017/11/14/subdomain-hijacking/)
-   - [KIV] Determines whether the site redirects through a suspicious top-level domain (TLD)
+   - [KIV] Determines whether the site redirects through a suspicious top-level domain (TLD) <br/>
+   (WHY : https://www.symantec.com/blogs/feature-stories/top-20-shady-top-level-domains)
 
 3) Content Analysing Backend
 
