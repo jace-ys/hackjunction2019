@@ -4,6 +4,7 @@ from spacy.lang.en import English
 # import spam
 import math
 
+
 class GrammarChecker:
 
     def __init__(self, text, max_char_count = 17, sensitivity = 1):

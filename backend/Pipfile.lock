@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d01e70016104a78acc02e648611a0fbf23bd9eadbad6e484f0ea26e5368f4e35"
+            "sha256": "694b446d2a9d2ca9451c9baa023c4f9e908b02d39598cda36d3e97592ad34d83"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -436,6 +436,14 @@
             ],
             "index": "pypi",
             "version": "==1.25.7"
+        },
+        "vadersentiment": {
+            "hashes": [
+                "sha256:5dce530a78315563f8b3cd01033bbdd3bf4985fabf359ca68d4167728081c803",
+                "sha256:a6d6f2c8452862a2f81dcf9819ac5812fc8be5322fc8651bdef5df2715baf03f"
+            ],
+            "index": "pypi",
+            "version": "==3.2.1"
         },
         "wasabi": {
             "hashes": [

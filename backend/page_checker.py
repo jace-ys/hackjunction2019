@@ -1,7 +1,7 @@
 import re
 import json
 from parse import Parser
-from phish_categorizer import PhishCategorizer
+from phish_categorizer import PhishCategorizer, PhishCategory
 
 # url-based tests
 def ip_address(url):
@@ -50,13 +50,14 @@ def https_domain(url):
 
 def get_domain(url):
     if url.startswith('https://'):
-        domain = url[8:]
+        url = url[8:]
     elif url.startswith('http://'):
-        domain = url[7:]
-    if domain.startswith('www.'):
-        domain = domain[4:]
-    domain = re.split('/', domain)[0]
-    return domain
+        url = url[7:]
+    if url.startswith('www.'):
+        url = url[4:]
+    url= re.split('/', url)[0]
+    return url
+
 
 def get_issues(url):
     # checks on URL
@@ -76,10 +77,11 @@ def get_issues(url):
     pc = PhishCategorizer(url_text)
     r = pc.categorize()
     res = pc.check_grammar()
-    win = r == 1
-    bank = r == 2
-    personal = r == 3
+    win = r == PhishCategory.set_win
+    bank = r == PhishCategory.set_bank
+    personal = r == PhishCategory.set_personal
     grammar = res > 20
+
 
     data = {"isPhishing":True,
             "issues": []}

@@ -6,10 +6,10 @@ from phish_categorizer import PhishCategorizer, PhishCategory
 # url-based tests
 def ip_address(url):
     # return true if url has an ip address, otherwise false
-    
+
     dec_pattern = '[0-9]{1,3}[.][0-9]{1,3}[.][0-9]{1,3}[.][0-9]{1,3}'
     hex_pattern = '0x.{2}[.]0x.{2}[.]0x.{2}[.]0x.{2}'
-    
+
     dec_match = re.search(dec_pattern, url)
     hex_match = re.search(hex_pattern, url)
     if dec_match:
@@ -31,7 +31,7 @@ def long_url(url):
 def redirection_double_slash(url):
     message = "This URL actually consists of two URL separated by a '//'. This means that the site you're actually going to visit is the one that occurs after the '//'. This is one way phishing attackers can try to distract you!"
     splits = re.split('//', url)
-    
+
     return len(splits) > 2 or len(splits[0]) > 7
 
 def domain_dash(url):
@@ -47,7 +47,7 @@ def https_domain(url):
     message = "This URL contains 'https' in the domain of the URL. The domain is what comes after the 'www.' in the URL. While the start of the URL usually contains the pattern 'https', it should never appears in the domain part. If it does, it's most likely a phishing site!"
     domain = get_domain(url)
     return "https" in domain
-    
+
 def get_domain(url):
     if url.startswith('https://'):
         url = url[8:]
@@ -57,8 +57,8 @@ def get_domain(url):
         url = url[4:]
     url= re.split('/', url)[0]
     return url
-    
-    
+
+
 def get_issues(url):
     # checks on URL
     url_ip = ip_address(url)
@@ -68,11 +68,11 @@ def get_issues(url):
     dash = domain_dash(url)
     https = https_domain(url)
     at = at_url(url)
-    
+
     # process html text
     p = Parser()
     url_text = p.scrape_text(url)
-    
+
     # grammar, site category checks
     pc = PhishCategorizer(url_text)
     r = pc.categorize()
@@ -81,8 +81,8 @@ def get_issues(url):
     bank = r == PhishCategory.set_bank
     personal = r == PhishCategory.set_personal
     grammar = res > 20
-    
-    
+
+
     data = {"isPhishing":True,
             "issues": []}
     if len(url_ip) > 0:
@@ -135,10 +135,8 @@ def get_issues(url):
                                'text': "Besides inspecting the web page, you can also look at the address bar to distinguish phishing websites. Some phishing websites have weird <span class='ui tooltip' data-tooltip='web address'>URLs</span> that differ from normal sites."})
         data["issues"].append({'subject': "You're looking at a phishing site that is very hard to distinguish from a normal website.",
                                'text': "Sometimes, even that doesn't work as the phishing attacker can be very deceptive. That's why you have assistants like me to protect you!"})
-        
+
     data["issues"].append({'subject': "That's it for this website.",
                                'text': "You'll be redirected to where you were before. Try to remember what you've learned!"})
-    
-    return json.dumps(data)
 
-
+    return data

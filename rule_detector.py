@@ -125,4 +125,4 @@ def get_issues(url):
     data["issues"].append({'subject': "That's it for this website.",
                                'text': "Try to remember what you've learned!"})
 
-    return json.dumps(data)
+    return data

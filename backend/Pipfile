@@ -25,6 +25,7 @@ spacy-langdetect = "*"
 spacy = "*"
 grammarbot = "*"
 nltk = "*"
+vadersentiment = "*"
 
 [requires]
 python_version = "3.7"
