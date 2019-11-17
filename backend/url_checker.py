@@ -119,4 +119,4 @@ def computeAlerts(url):
         newAlerts.append(ALERT_MESSAGES['noticann'])
     return newAlerts
 
-print(computeAlerts('http://www.phishtankcom.clichekdvd.pw'))
+print(computeAlerts('https://peringatan-pemblokiran-id1.webnode.com/contact'))
