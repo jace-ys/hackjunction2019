@@ -80,6 +80,7 @@ def get_issues(url):
     win = r == PhishCategory.set_win
     bank = r == PhishCategory.set_bank
     personal = r == PhishCategory.set_personal
+    impersonate = r == PhishCategory.impersonate
     grammar = res > 20
 
 
@@ -121,6 +122,9 @@ def get_issues(url):
                                   'text': "Phishing attackers put up such 'free prizes' to try to attract your attention and have you submit information to claim your reward."})
         data["issues"].append({'subject': "This site looks like it's falsely promoting a reward to you.",
                                   'text': "It's not safe to give away your information online. Also, you won't actually be getting anything!"})
+    elif impersonate:
+        data["issues"].append({'subject': "This site looks like it's trying to impersonate a real company.",
+                                  'text': "When logging in to any website that looks familiar, make sure that the URL is what you expect it to be and that the page does not contain any weird artifacts."})
     if grammar:
         data["issues"].append({'subject': "This page looks like it was written by a phisher!",
                                   'text': "Some phishing sites, like this one, are not written well. If you land on a webpage that contains weird language, go back - you're on a phishing site!"})
