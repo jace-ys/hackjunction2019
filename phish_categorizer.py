@@ -1,10 +1,14 @@
 from grammar_check import GrammarChecker
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from enum import Enum
 import spacy
+from spacy import displacy
+import en_core_web_sm
 import numpy as np
 from nltk.stem import PorterStemmer
 from nltk import word_tokenize, pos_tag
 from nltk.stem import WordNetLemmatizer
+from nltk.corpus import twitter_samples
 from parse import Parser
 
 class PhishCategory(Enum):
@@ -34,17 +38,18 @@ class PhishCategorizer:
         self.text = text
         self.category = None
         self.grammar_measure = None
-
+        self.nlp = en_core_web_sm.load()
         self.gc = GrammarChecker(self.text) # Initialize grammar checker
         self.sentences = self.gc.get_sentences() # Get sentences from text
 
     def check_grammar(self, sensitivity = 1):
         # Checks grammar found in website's HTML content
-        # gc = GrammarChecker(self.text, sensitivity = sensitivity)
-
-        measure = self.gc.measure_grammar(sensitivity)
-        self.grammar_measure = measure
-        return measure
+        try:
+            measure = self.gc.measure_grammar(sensitivity)
+            self.grammar_measure = measure
+            return measure
+        except:
+            return None
 
     def get_stemmed_text(self):
         # Returns lemmatized text
@@ -68,7 +73,24 @@ class PhishCategorizer:
         # Scans website HTML content and looks for keywords to categorize it
 
         # Get stemmed text
-        self.text = self.get_stemmed_text().lower()
+        self.text = self.get_stemmed_text()
+        entity_present = False
+        entity_name = None
+        words = self.text.split()
+        if len(words) < 2:
+            text = self.text + ' is random text used for analysis.'
+        nlp = spacy.load('en')
+        doc = nlp(text)
+
+        for ent in doc.ents:
+            if ent.label_ == 'ORG':
+                entity_name = ent.text
+                entity_present = True
+
+        analyzer = SentimentIntensityAnalyzer()
+        sentiment = analyzer.polarity_scores(self.text)
+        pos, neu, neg = sentiment['pos'], sentiment['neu'], sentiment['neg']
+
         # Get occurences of keywords in text
         win_occurences = []
         bank_occurences = []
@@ -97,12 +119,18 @@ class PhishCategorizer:
 
 
 if __name__ == '__main__':
-    url = 'https://christojati.com'
+
+    crypto_url = 'http://crypto-reward.com/'
+
+    photo_url = 'https://christojati.com'
+
+    test_url = 'http://neasiatravels.com/wp-content/paypalnz/'
 
     p = Parser()
 
     # Test text
-    url_text = p.scrape_text(url)
+    url_text = p.scrape_text(test_url)
+    print(url_text)
 
     non_specific_text = 'An ipad paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. There are usually between three and eight sentences. Paragraphs can begin with an indentation (about five spaces), or by missing a line out, and then starting again. This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence . This topic sentence of the paragraph tells the reader what the paragraph will be about. Essays usually have multiple paragraphs that make claims to support a thesis statement, which is the central idea of the essay. Paragraphs may signal when the writer changes topics. Each paragraph may have a number of sentences, depending on the topic.'
 
@@ -112,8 +140,10 @@ if __name__ == '__main__':
 
     personal_text = 'Your home insurance has been compromised and you need to renew now! Enter your personal details to continue'
 
-    pc = PhishCategorizer(bank_text) # Initialize Categorizer with text we want to categorize
-    r = pc.categorize()
-    print(r)
-    res = pc.check_grammar()
-    print(res)
+    if url_text:
+        pc = PhishCategorizer(url_text) # Initialize Categorizer with text we want to categorize
+        r = pc.categorize()
+        win = r == PhishCategory.set_win
+        print(r, win)
+        res = pc.check_grammar()
+        print(res)
