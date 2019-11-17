@@ -43,8 +43,8 @@ const modal = (index, issue) => {
   <div class="image content">
     <img class="image" src=${chrome.runtime.getURL("assets/mascot.png")}>
     <div class="speech-bubble">
-      <h4>${issue.subject}</h4>
-      <p>${issue.text}</p>
+      <h4 class="subject">${issue.subject}</h4>
+      <p class="text">${issue.text}</p>
       <small>- Phishy</small>
     </div>
   </div>
