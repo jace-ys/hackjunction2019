@@ -99,10 +99,10 @@ def get_issues(url):
         data["issues"].append({'subject': "This <span class='ui tooltip' data-tooltip='web address'>URL</span> actually consists of two URL separated by a '//'.",
                                'text': "This is one way phishing attackers can try to distract you!"})
     if dash:
-        data["issues"].append({'subject': "This domain contains a dash." % domain,
+        data["issues"].append({'subject': "This domain contains a dash.",
                                'text': "Most domains that contain a dash are from phishing websites."})
     if https:
-        data["issues"].append({'subject': "This domain contains 'https'." % domain,
+        data["issues"].append({'subject': "This domain contains 'https'.",
                                'text': "While the start of the <span class='ui tooltip' data-tooltip='web address'>URL</span> usually contains the pattern 'https', it should never appears in the domain part. If it does, it's most likely a phishing site!"})
     if at:
         data["issues"].append({'subject': "This <span class='ui tooltip' data-tooltip='web address'>URL</span> contains '@'.",
