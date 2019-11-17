@@ -12,10 +12,11 @@ from nltk.corpus import twitter_samples
 from parse import Parser
 
 class PhishCategory(Enum):
-    set_win = 1 # Tells user they've won a prize
-    set_bank = 2 # Tricks user into entering log in credentials
-    set_personal = 3 # Tricks user into entering payment info
-    non_specific = 4 # Not identified as any other category
+    set_win = 1         # Tells user they've won a prize
+    set_bank = 2        # Tricks user into entering log in credentials
+    set_personal = 3    # Tricks user into entering payment info
+    impersonate = 4     # Looks like a popular website
+    non_specific = 5    # Not identified as any other category
 
 
 class PhishCategorizer:
@@ -88,6 +89,9 @@ class PhishCategorizer:
                 entity_name = ent.text
                 entity_present = True
 
+        if entity_present:
+            return PhishCategory.impersonate
+
         analyzer = SentimentIntensityAnalyzer()
         sentiment = analyzer.polarity_scores(self.text)
         pos, neu, neg = sentiment['pos'], sentiment['neu'], sentiment['neg']
@@ -125,13 +129,12 @@ if __name__ == '__main__':
 
     photo_url = 'https://christojati.com'
 
-    test_url = 'https://clck.ru/JxLsn'
+    test_url = 'https://facebook.com'
 
     p = Parser()
 
     # Test text
     url_text = p.scrape_text(test_url)
-    print(url_text)
 
     non_specific_text = 'An ipad paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. There are usually between three and eight sentences. Paragraphs can begin with an indentation (about five spaces), or by missing a line out, and then starting again. This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence . This topic sentence of the paragraph tells the reader what the paragraph will be about. Essays usually have multiple paragraphs that make claims to support a thesis statement, which is the central idea of the essay. Paragraphs may signal when the writer changes topics. Each paragraph may have a number of sentences, depending on the topic.'
 
