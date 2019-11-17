@@ -15,7 +15,11 @@ ALERT_MESSAGES = {
         "text": "Having control over a subdomain of a targeted domain name can be used to setup up a phishing website or other fake content. "
         },
     'notTopSite': {
+<<<<<<< HEAD
         "subject": "This website is not visited frequently.",
+=======
+        "subject": "The website is not frequently visited",
+>>>>>>> 03a717376fe67579ec2f34c84e7e327bf674e101
         "text": "Are you sure you've typed the url correctly?"
         },
     'manySubdomains': {
@@ -73,14 +77,14 @@ def isiCann(domain):
     count=0
     while True:
         line = infile.readline().replace('\n', '')
-        
+
         if line.lower()==suffix:
-                  
+
             return True
-        if not line: 
+        if not line:
             break
     return False
-            
+
 def hasManySubdomains(domain):
     domainPartsWithoutTld = getDomainPartsWithoutTld(domain)
     return len(domainPartsWithoutTld) >= NUM_SUSPICIOUS_SUBDOMAINS
@@ -93,11 +97,10 @@ def computeAlerts(url):
     newAlerts = []
     domain = getDomain(url).lower()
 
-    if not(isTopSite(domain)):
+    if not (isTopSite(domain)):
         newAlerts.append(ALERT_MESSAGES['notTopSite'])
-        if(isIDN(domain)):
+        if (isIDN(domain)):
             newAlerts.append(ALERT_MESSAGES['isIDN'])
-
     if (hasManySubdomains(domain)):
         newAlerts.append(ALERT_MESSAGES['manySubdomains'])
     if (hasLongSubdomains(domain)):

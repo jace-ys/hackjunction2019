@@ -36,12 +36,14 @@ Phishy comprises of 3 components.
    - Check if the top-level domain of the URL matches the list of all valid top-level domains is maintained by the Internet Assigned Numbers Authority (IANA) (https://www.icann.org/resources/pages/tlds-2012-02-25-en)
    - Check if the URL contains characters or structures typical for phishing websites
 
-3. Content Analysing Backend: This service analyses the website's content and identifies the factors that make it classified as a phishing website. The text content is stripped from the website's HTML and the following is done:
-   - Pre-processing using Natural Language Processing
-   - Check if the website exceeds a certain threshold of grammatical errors
-   - Uses a combination of keyword search, entity recognition and sentiment analysis to categorize the type of phishing attempt
+3. Content Analysing Backend: This is a Python service that analyses the website's content and identifies factors that make it classified as a phishing website. The text content is stripped from the website's HTML and the following is done:
+   - Pre-processing using Natural Language Processing to get important words: cleaning, filtering and lemmatizing
+   - Detect grammatical errors
+   - Check if the website exceeds a certain threshold of grammatical errors (error weights are exponentially proportional to the number of typo's to accomodate for unexpected typo's but penalize large typo frequency) 
+   - Uses a combination of keyword search and entity recognition to categorize the type of phishing attempt (website impersonation, personal details acquisition or any general scam)
 
-# Future improvements
+## Future improvements
 
-- Reduce latency for network round-trip or build some ML capabilities into extension
-- For Phishy to be effective, it should be installed onto kids' devices and can only be disabled by their parents.
+- Reduce latency for network round-trip
+- Train and use a Latent Dirichlet Allocation (LDA) model and sentiment analysis to predict the context of the website for more accurate phishing categorisation
+- Installed onto kids' devices and controlled by their parents
