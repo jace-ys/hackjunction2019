@@ -118,4 +118,4 @@ def computeAlerts(url):
         newAlerts.append(ALERT_MESSAGES['noticann'])
     return newAlerts
 
-print(computeAlerts('https://anzbankingac.com'))
+print(computeAlerts('http://testsafebrowsing.appspot.com/'))
