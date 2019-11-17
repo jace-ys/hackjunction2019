@@ -38,7 +38,7 @@ Phishy comprises of 3 components.
 3. Content Analysing Backend: This service analyses the website's content and identifies the factors that make it classified as a phishing website. The text content is stripped from the website's HTML and the following is done:
    - Pre-processing using Natural Language Processing
    - Check if the website exceeds a certain threshold of grammatical errors
-   - Uses a combination of sentiment analysis and keyword search to categorize the type of phishing attempt
+   - Uses a combination of keyword search, entity recognition and sentiment analysis to categorize the type of phishing attempt
 
 # Future improvements
 
