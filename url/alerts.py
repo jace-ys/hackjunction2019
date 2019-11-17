@@ -7,12 +7,28 @@ import re
 from promise import Promise
 
 ALERT_MESSAGES = {
-    'isIDN': 'Domain uses uncommon characters',
-    'longSubdomains': 'Unusually long subdomains',
-    'notTopSite': 'Site not in top 5k sites',
-    'manySubdomains': 'Unusually many subdomains',
-    'noticann': 'Tdl not Icann'
-    }
+    'isIDN': {
+        "subject": "The domain is an <span class=\"ui icon\" data-tooltip=\"internationalized domain name\">IDN</span> or uses uncommon characters",
+        "textOne": "The internationalized domain name (IDN) homograph attack is a way a malicious party may deceive computer users about what remote system they are communicating with, by exploiting the fact that many different characters look alike"
+        },
+    'longSubdomains': {
+        "subject": "The URL has unusually long subdomains",
+        "textOne": "Having control over a subdomain of a targeted domain name can be used to setup up a phishing website or other fake content. "
+        },
+    'notTopSite': {
+        "subject": "The site is not in top 5k sites",
+        "textOne": "Are you sure you've typed the url correctly?"
+        },
+    'manySubdomains': {
+        "subject": "The URL has unusually many subdomains",
+        "textOne": "Having control over a subdomain of a targeted domain name can be used to setup up a phishing website or other fake content. "
+            
+        },
+    'noticann': {
+        "subject": "The <span class=\"ui icon\" data-tooltip=\"top-level domain\">TLD</span> is not valid",
+        "textOne": "Are you sure you've typed the url correctly?"
+        }
+  }
 
 NUM_SUSPICIOUS_SUBDOMAINS = 4
 SUSPICIOUS_SUBDOMAIN_LENGTH = 19
