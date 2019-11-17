@@ -44,5 +44,5 @@ Phishy comprises of 3 components.
 ## Future improvements
 
 - Reduce latency for network round-trip
-- Train and use a Latent Dirichlet Allocation (LDA) model to predict the context of the website for more accurate phishing categorisation
+- Train and use a Latent Dirichlet Allocation (LDA) model and sentiment analysis to predict the context of the website for more accurate phishing categorisation
 - Installed onto kids' devices and controlled by their parents
