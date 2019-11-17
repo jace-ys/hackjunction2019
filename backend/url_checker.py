@@ -39,7 +39,6 @@ topSitesList=setTopSitesList()
 
 def getDomain(url):
     parsed=urlparse(url)
-    print(parsed)
     return parsed.netloc
 
 def getDomainPartsWithoutTld(domain):
@@ -47,12 +46,6 @@ def getDomainPartsWithoutTld(domain):
     suffix=''
     if(ext.suffix ):
         suffix='.'+ext.suffix
-<<<<<<< HEAD
-        print(suffix)
-=======
-
->>>>>>> 0b5f5dfd5156a39dc95595cad7c9e5ec681176b6
-    print(domain[:domain.rindex(suffix)].split('.'))
     return  domain[:domain.rindex(suffix)].split('.')
 
 def isIDN(domain):
@@ -64,11 +57,6 @@ def isTopSite(domain):
     suffix=''
     if(ext.suffix):
         suffix='.'+ext.suffix
-<<<<<<< HEAD
-        print(suffix)
-=======
-
->>>>>>> 0b5f5dfd5156a39dc95595cad7c9e5ec681176b6
     domainPartsWithoutTld=getDomainPartsWithoutTld(domain)
     etldPlusOne = domainPartsWithoutTld[len(domainPartsWithoutTld) - 1] + suffix
 
@@ -76,16 +64,22 @@ def isTopSite(domain):
 
 def isiCann(domain):
     ext = tldextract.extract(domain)
+    print(ext)
     suffix=''
     if(ext.suffix):
         suffix=ext.suffix
-        print(suffix)
-    infile = open('icann.txt', 'r')
+        print(ext.suffix)
+    infile = open('icann.txt')
     count=0
     while True:
-        line = infile.readline()
-        if not line: break
-        return suffix.find(line.lower())!=-1
+        line = infile.readline().replace('\n', '')
+        
+        if line.lower()==suffix:
+                  
+            return True
+        if not line: 
+            break
+    return False
             
 def hasManySubdomains(domain):
     domainPartsWithoutTld = getDomainPartsWithoutTld(domain)
@@ -112,4 +106,4 @@ def computeAlerts(url):
         newAlerts.append(ALERT_MESSAGES['noticann'])
     return newAlerts
 
-print(computeAlerts('https://peringatan-pemblokiran-id1.webnode.com/contact'))
+print(computeAlerts('http://www.phishtankcom.clichekdvd.pw'))
