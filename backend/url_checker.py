@@ -15,11 +15,7 @@ ALERT_MESSAGES = {
         "text": "Having control over a subdomain of a targeted domain name can be used to setup up a phishing website or other fake content. "
         },
     'notTopSite': {
-<<<<<<< HEAD
-        "subject": "This website is not visited frequently.",
-=======
         "subject": "The website is not frequently visited",
->>>>>>> 03a717376fe67579ec2f34c84e7e327bf674e101
         "text": "Are you sure you've typed the url correctly?"
         },
     'manySubdomains': {
