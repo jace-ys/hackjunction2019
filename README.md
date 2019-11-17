@@ -35,7 +35,10 @@ Phishy comprises of 3 components.
    - Check if the URL has many or too long subdomains (https://securityblog.switch.ch/2017/11/14/subdomain-hijacking/)
    - Check if the top-level domain of the URL matches the list of all valid top-level domains is maintained by the Internet Assigned Numbers Authority (IANA)(IANA) (https://www.icann.org/resources/pages/tlds-2012-02-25-en)
 
-3. Content Analysing Backend
+3. Content Analysing Backend: This service analyses the website's content and identifies the factors that make it classified as a phishing website. The text content is stripped from the website's HTML and the following is done:
+   - Pre-processing using Natural Language Processing
+   - Check if the website exceeds a certain threshold of grammatical errors
+   - Uses a combination of sentiment analysis and keyword search to categorize the type of phishing attempt
 
 # Future improvements
 
