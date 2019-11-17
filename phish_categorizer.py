@@ -77,6 +77,7 @@ class PhishCategorizer:
         entity_present = False
         entity_name = None
         words = self.text.split()
+        text = self.text
         if len(words) < 2:
             text = self.text + ' is random text used for analysis.'
         nlp = spacy.load('en')
@@ -124,7 +125,7 @@ if __name__ == '__main__':
 
     photo_url = 'https://christojati.com'
 
-    test_url = 'http://neasiatravels.com/wp-content/paypalnz/'
+    test_url = 'https://clck.ru/JxLsn'
 
     p = Parser()
 
