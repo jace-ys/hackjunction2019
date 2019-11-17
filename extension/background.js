@@ -4,12 +4,11 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   if (changeInfo.status === "complete") {
-    fetch("https://swapi.co/api/people/1/")
+    fetch(`http://localhost:5000/check-phishing?url=${tab.url}`)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
-        if (true) {
-          messageContent({ isPhishing: true, ...data });
+        if (data.isPhishing) {
+          messageContent(data);
         }
       });
   }

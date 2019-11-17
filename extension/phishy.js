@@ -4,7 +4,7 @@ chrome.runtime.onMessage.addListener((message, sender) => {
     injectStyles();
     injectScripts();
 
-    data.issues.forEach((issue, index) => {
+    message.issues.forEach((issue, index) => {
       injectModal(index, issue);
     });
   }

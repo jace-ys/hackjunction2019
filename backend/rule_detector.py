@@ -22,8 +22,6 @@ def ip_address(url):
 
 url1 = 'http://125.98.3.123/fake.html'
 url2 = 'http://0x58.0xCC.0xCA.0x62/2/paypal.ca/index.html'
-#print(ip_address(url1))
-#print(ip_address(url2))
 
 def long_url(url):
     return len(url) > 54
@@ -57,8 +55,6 @@ def get_domain(url):
         domain = domain[4:]
     domain = re.split('/', domain)[0]
     return domain
-
-
 
 def get_issues(url):
     # URL is the most important check so that goes first
