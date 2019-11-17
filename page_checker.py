@@ -77,9 +77,9 @@ def get_issues(url):
     pc = PhishCategorizer(url_text)
     r = pc.categorize()
     res = pc.check_grammar()
-    win = r == 1
-    bank = r == 2
-    personal = r == 3
+    win = r == PhishCategory.set_win
+    bank = r == PhishCategory.set_bank
+    personal = r == PhishCategory.set_personal
     grammar = res > 20
     
     
