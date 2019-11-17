@@ -15,7 +15,7 @@ ALERT_MESSAGES = {
     }
 
 NUM_SUSPICIOUS_SUBDOMAINS = 4
-SUSPICIOUS_SUBDOMAIN_LENGTH = 22
+SUSPICIOUS_SUBDOMAIN_LENGTH = 19
 def setTopSitesList():
     with open('topsites.json') as json_file:
         return json.load(json_file)
@@ -24,12 +24,17 @@ topSitesList=setTopSitesList()
 
 def getDomain(url):
     parsed=urlparse(url)
+    print(parsed)
     return parsed.netloc
 
 def getDomainPartsWithoutTld(domain):
     ext = tldextract.extract(domain)
-    suffix = '.'+ext.suffix
-    return domain[:domain.rindex(suffix)].split('.')
+    suffix=''
+    if(ext.suffix ):
+        suffix='.'+ext.suffix
+    
+    print(domain[:domain.rindex(suffix)].split('.'))
+    return  domain[:domain.rindex(suffix)].split('.')
 
 def isIDN(domain):
     regexPunycode = "/\.(xn--)/"
@@ -37,16 +42,20 @@ def isIDN(domain):
  
 def isTopSite(domain):
     ext = tldextract.extract(domain)
-    suffix = '.'+ext.suffix
+    suffix=''
+    if(ext.suffix):
+        suffix='.'+ext.suffix
+  
     domainPartsWithoutTld=getDomainPartsWithoutTld(domain)
     etldPlusOne = domainPartsWithoutTld[len(domainPartsWithoutTld) - 1] + suffix
     
     return etldPlusOne.lower() in topSitesList.keys()
-        
-    
+           
 def isiCann(domain):
     ext = tldextract.extract(domain)
-    suffix = ext.suffix
+    suffix=''
+    if(ext.suffix):
+        suffix='.'+ext.suffix
     infile = open('icann.txt', 'r')
     count=0
     while True:
@@ -93,4 +102,4 @@ def computeAlerts(url):
         newAlerts.append(ALERT_MESSAGES['noticann'])
     return newAlerts
 
-print(computeAlerts('https://www.secure.runescape.com'))
+print(computeAlerts('https://anzbankingac.com'))
