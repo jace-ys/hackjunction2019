@@ -47,11 +47,6 @@ def getDomainPartsWithoutTld(domain):
     suffix=''
     if(ext.suffix ):
         suffix='.'+ext.suffix
-<<<<<<< HEAD
-        print(suffix)
-=======
-
->>>>>>> 0b5f5dfd5156a39dc95595cad7c9e5ec681176b6
     print(domain[:domain.rindex(suffix)].split('.'))
     return  domain[:domain.rindex(suffix)].split('.')
 
@@ -64,11 +59,6 @@ def isTopSite(domain):
     suffix=''
     if(ext.suffix):
         suffix='.'+ext.suffix
-<<<<<<< HEAD
-        print(suffix)
-=======
-
->>>>>>> 0b5f5dfd5156a39dc95595cad7c9e5ec681176b6
     domainPartsWithoutTld=getDomainPartsWithoutTld(domain)
     etldPlusOne = domainPartsWithoutTld[len(domainPartsWithoutTld) - 1] + suffix
 
@@ -86,7 +76,7 @@ def isiCann(domain):
         line = infile.readline()
         if not line: break
         return suffix.find(line.lower())!=-1
-            
+
 def hasManySubdomains(domain):
     domainPartsWithoutTld = getDomainPartsWithoutTld(domain)
     return len(domainPartsWithoutTld) >= NUM_SUSPICIOUS_SUBDOMAINS
