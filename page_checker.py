@@ -1,7 +1,7 @@
 import re
 import json
 from parse import Parser
-from phish_categorizer import PhishCategorizer
+from phish_categorizer import PhishCategorizer, PhishCategory
 
 # url-based tests
 def ip_address(url):
