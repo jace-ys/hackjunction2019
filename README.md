@@ -28,12 +28,13 @@ Phishy comprises of 3 components.
 
 2. URL Analysing Backend:
    This service exposed via a Flask HTTP server takes a URL payload, and analyses the URL to determine if it's a potential phishing website before returning a boolean response value to the Chrome extension.
-   The service categorise suspicious urls against checklist of conditions:
+   The service categorise suspicious urls against checklist of conditions, including but not limited to:
 
    - Compare the URL against a list of known “good/popular” sites
    - Check if the URL is an internationalized domain name (https://en.wikipedia.org/wiki/IDN_homograph_attack)
    - Check if the URL has many or too long subdomains (https://securityblog.switch.ch/2017/11/14/subdomain-hijacking/)
    - Check if the top-level domain of the URL matches the list of all valid top-level domains is maintained by the Internet Assigned Numbers Authority (IANA)(IANA) (https://www.icann.org/resources/pages/tlds-2012-02-25-en)
+   - Check if the URL contains characters or structures typical for phishing websites
 
 3. Content Analysing Backend: This service analyses the website's content and identifies the factors that make it classified as a phishing website. The text content is stripped from the website's HTML and the following is done:
    - Pre-processing using Natural Language Processing
