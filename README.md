@@ -38,6 +38,7 @@ Phishy comprises of 3 components.
 
 3. Content Analysing Backend: This is a Python service that analyses the website's content and identifies factors that make it classified as a phishing website. The text content is stripped from the website's HTML and the following is done:
    - Pre-processing using Natural Language Processing to get important words: cleaning, filtering and lemmatizing
+   - Detect grammatical errors
    - Check if the website exceeds a certain threshold of grammatical errors (error weights are exponentially proportional to the number of typo's to accomodate for unexpected typo's but penalize large typo frequency) 
    - Uses a combination of keyword search and entity recognition to categorize the type of phishing attempt (website impersonation, personal details acquisition or any general scam)
 
