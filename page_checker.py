@@ -50,13 +50,13 @@ def https_domain(url):
     
 def get_domain(url):
     if url.startswith('https://'):
-        domain = url[8:]
+        url = url[8:]
     elif url.startswith('http://'):
-        domain = url[7:]
-    if domain.startswith('www.'):
-        domain = domain[4:]
-    domain = re.split('/', domain)[0]
-    return domain
+        url = url[7:]
+    if url.startswith('www.'):
+        url = url[4:]
+    url= re.split('/', url)[0]
+    return url
     
     
 def get_issues(url):
