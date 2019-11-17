@@ -8,29 +8,29 @@ import re
 ALERT_MESSAGES = {
     'isIDN': {
         "subject": "The domain is an <span class=\"ui icon\" data-tooltip=\"internationalized domain name\">IDN</span> or uses uncommon characters",
-        "text": "The internationalized domain name (IDN) homograph attack is a way a malicious party may deceive computer users about what remote system they are communicating with, by exploiting the fact that many different characters look alike"
+        "textOne": "The internationalized domain name (IDN) homograph attack is a way a malicious party may deceive computer users about what remote system they are communicating with, by exploiting the fact that many different characters look alike"
         },
     'longSubdomains': {
         "subject": "The URL has unusually long subdomains",
-        "text": "Having control over a subdomain of a targeted domain name can be used to setup up a phishing website or other fake content. "
+        "textOne": "Having control over a subdomain of a targeted domain name can be used to setup up a phishing website or other fake content. "
         },
     'notTopSite': {
         "subject": "The site is not in top 5k sites",
-        "text": "Are you sure you've typed the url correctly?"
+        "textOne": "Are you sure you've typed the url correctly?"
         },
     'manySubdomains': {
         "subject": "The URL has unusually many subdomains",
-        "text": "Having control over a subdomain of a targeted domain name can be used to setup up a phishing website or other fake content. "
+        "textOne": "Having control over a subdomain of a targeted domain name can be used to setup up a phishing website or other fake content. "
 
         },
     'noticann': {
         "subject": "The <span class=\"ui icon\" data-tooltip=\"top-level domain\">TLD</span> is not valid",
-        "text": "Are you sure you've typed the url correctly?"
+        "textOne": "Are you sure you've typed the url correctly?"
         }
   }
 
 NUM_SUSPICIOUS_SUBDOMAINS = 4
-SUSPICIOUS_SUBDOMAIN_LENGTH = 22
+SUSPICIOUS_SUBDOMAIN_LENGTH = 19
 def setTopSitesList():
     with open('topsites.json') as json_file:
         return json.load(json_file)
@@ -39,12 +39,17 @@ topSitesList=setTopSitesList()
 
 def getDomain(url):
     parsed=urlparse(url)
+    print(parsed)
     return parsed.netloc
 
 def getDomainPartsWithoutTld(domain):
     ext = tldextract.extract(domain)
-    suffix = '.'+ext.suffix
-    return domain[:domain.rindex(suffix)].split('.')
+    suffix=''
+    if(ext.suffix ):
+        suffix='.'+ext.suffix
+
+    print(domain[:domain.rindex(suffix)].split('.'))
+    return  domain[:domain.rindex(suffix)].split('.')
 
 def isIDN(domain):
     regexPunycode = "/\.(xn--)/"
@@ -52,16 +57,20 @@ def isIDN(domain):
 
 def isTopSite(domain):
     ext = tldextract.extract(domain)
-    suffix = '.'+ext.suffix
+    suffix=''
+    if(ext.suffix):
+        suffix='.'+ext.suffix
+
     domainPartsWithoutTld=getDomainPartsWithoutTld(domain)
     etldPlusOne = domainPartsWithoutTld[len(domainPartsWithoutTld) - 1] + suffix
 
     return etldPlusOne.lower() in topSitesList.keys()
 
-
 def isiCann(domain):
     ext = tldextract.extract(domain)
-    suffix = ext.suffix
+    suffix=''
+    if(ext.suffix):
+        suffix='.'+ext.suffix
     infile = open('icann.txt', 'r')
     count=0
     while True:
@@ -108,4 +117,4 @@ def computeAlerts(url):
         newAlerts.append(ALERT_MESSAGES['noticann'])
     return newAlerts
 
-#print(computeAlerts('https://www.secure.runescape.com'))
+print(computeAlerts('http://testsafebrowsing.appspot.com/'))
