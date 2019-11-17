@@ -48,7 +48,7 @@ def getDomainPartsWithoutTld(domain):
     suffix=''
     if(ext.suffix ):
         suffix='.'+ext.suffix
-    
+        print(suffix)
     print(domain[:domain.rindex(suffix)].split('.'))
     return  domain[:domain.rindex(suffix)].split('.')
 
@@ -61,7 +61,7 @@ def isTopSite(domain):
     suffix=''
     if(ext.suffix):
         suffix='.'+ext.suffix
-  
+        print(suffix)
     domainPartsWithoutTld=getDomainPartsWithoutTld(domain)
     etldPlusOne = domainPartsWithoutTld[len(domainPartsWithoutTld) - 1] + suffix
     
@@ -71,13 +71,14 @@ def isiCann(domain):
     ext = tldextract.extract(domain)
     suffix=''
     if(ext.suffix):
-        suffix='.'+ext.suffix
+        suffix=ext.suffix
+        print(suffix)
     infile = open('icann.txt', 'r')
     count=0
     while True:
         line = infile.readline()
         if not line: break
-        return line.lower().find(suffix)==-1
+        return suffix.find(line.lower())!=-1
             
 def hasManySubdomains(domain):
     domainPartsWithoutTld = getDomainPartsWithoutTld(domain)
@@ -118,4 +119,4 @@ def computeAlerts(url):
         newAlerts.append(ALERT_MESSAGES['noticann'])
     return newAlerts
 
-print(computeAlerts('http://testsafebrowsing.appspot.com/'))
+print(computeAlerts('http://www.phishtankcom.clichekdvd.pw'))
