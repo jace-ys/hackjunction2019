@@ -4,12 +4,12 @@
   "version": "1.0",
   "description": "Phishy extension",
   "icons": {
-    "16": "assets/mascot.png",
-    "48": "assets/mascot.png",
-    "128": "assets/mascot.png"
+    "16": "assets/mascot.gif",
+    "48": "assets/mascot.gif",
+    "128": "assets/mascot.gif"
   },
   "browser_action": {
-    "default_icon": "assets/mascot.png"
+    "default_icon": "assets/mascot.gif"
   },
   "background": {
     "scripts": ["background.js"],

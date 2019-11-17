@@ -41,7 +41,7 @@ const modal = (index, issue) => {
   return `
 <div class="ui basic modal" id="modal-${index}">
   <div class="image content">
-    <img class="image" src=${chrome.runtime.getURL("assets/mascot.png")}>
+    <img class="image" src=${chrome.runtime.getURL("assets/mascot.gif")}>
     <div class="speech-bubble">
       <h4>${issue.subject}</h4>
       <p>${issue.textOne}</p>
